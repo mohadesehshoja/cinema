@@ -1,0 +1,33 @@
+{% extends "pattern.html" %}
+{% block title %}
+list of tickets
+{% endblock %}
+{% block toolbar_title %}
+<h3>list of tickets</h3>
+{% endblock %}
+{% block toolbar_body %}
+    {{ block.super }}
+{% endblock %}
+{% block main_content %}
+    <div class="row">
+    <div class="col py-3">
+        {% if tickets %}
+            <div class="row px-2 ">
+            {% for ticket in  tickets %}
+                <div class="col-3 px-2 py-3">
+                <a href="{% url "ticket_details" ticket_id=ticket.id %}" class="btn btn-outline-dark  w-75 h-100">
+                <span>{{ ticket.showtime.movie.name }}</span>
+                <br>
+                <span>{{ ticket.showtime.cinema.name }}</span>
+                <br>
+                <span>{{ ticket.showtime.start_time | date:"l n/j H:i" }}</span>
+                <br>
+                <span>{{ ticket.seat_number }} seats</span>
+                </a>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}

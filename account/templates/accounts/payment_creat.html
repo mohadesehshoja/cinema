@@ -1,0 +1,25 @@
+{% extends 'pattern.html' %}
+{% block title %}pyment creat{% endblock %}
+{% block toolbar_title %}payment creat{% endblock %}
+{% block main_content %}
+    <form class="container" action="" method="post">
+    {% csrf_token %}
+    <div class="row my-3 ">
+        <div class="col-1">
+            amount:
+        </div>
+        <div class="col-5">
+            {{ payment_form.amount }}
+            {{ payment_form.amount.errors}}
+        </div>
+        <div class="col-2">
+            transaction id:
+        </div>
+        <div class="col-4">
+            {{ payment_form.transaction_id }}
+            {{ payment_form.transaction_id.errors }}
+        </div>
+        <button class="btn btn-success my-3" type="submit">submit</button>
+    </div>
+    </form>
+{% endblock %}

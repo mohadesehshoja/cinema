@@ -1,0 +1,32 @@
+{% extends 'accounts/patternaccount.html' %}
+{% block title %}log in{% endblock %}
+{% block toolbar_title %}<h3 >log in</h3>{% endblock %}
+{% block main_content %}
+    <form action="" method="post">
+    {% csrf_token %}
+    {% if error %}
+        <div class="alert alert-danger">
+        {{ error }}
+        </div>
+    {% endif %}
+   <div class="container">
+        <div class="form-group row">
+        <label class="col-3">username:</label>
+        <input class="col-9 form-control" type="text" name="username" value="{{ username }}">
+    </div>
+    <div class="form-group row">
+        <label class="col-3">password:</label>
+        <input class="col-9 form-control " type="password" name="password" value="{{ password }}">
+    </div>
+    <div class="form-group row justify-content-center">
+        <div class="col-4">
+            <button type="submit" class="btn btn-success w-100 my-3">
+                log in
+            </button>
+
+        </div>
+    </div>
+   </div>
+
+    </form>
+{% endblock %}

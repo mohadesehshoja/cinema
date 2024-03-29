@@ -1,0 +1,65 @@
+{% extends 'pattern.html' %}
+{% block title %}profile{% endblock %}
+{% block toolbar_title %}<h3 >profile</h3>
+<button class="btn btn-dark"><a href="{% url "ticket_list" %}">your tickets</a></button>
+{% endblock %}
+{% block main_content %}
+    <div class="row ">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">full name:</h5>
+            </div>
+            <div class="col-8">
+                {{ user.get_full_name }}
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">birthday</h5>
+            </div>
+            <div class="col-8">
+                {{ profile.birthday |date:"Y/n/j"}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">phone number:</h5>
+            </div>
+            <div class="col-8">
+               {{ profile.mobile }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">balance:</h5>
+            </div>
+            <div class="col-8">
+                {{ profile.balance }}
+                <button class="btn btn-success"><a href="{% url 'payment_list' %}">deposit balance</a> </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">address:</h5>
+            </div>
+            <div class="col-8">
+                {{ profile.address}}
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        {% if profile.profileimage %}
+            <img src="{{ profile.profileimage.url }}" class="img-fluid w-25 py-2" alt="profile image">
+        {% endif %}
+        <div class="row">
+            <div class="col-6">
+                <button class="btn btn-outline-danger my-3"><a href="{% url 'password_change' %}">change password</a> </button>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-outline-info my-3"><a href="{% url "profile_edit" %}">edite profile</a> </button>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

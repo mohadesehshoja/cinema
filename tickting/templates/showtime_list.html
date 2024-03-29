@@ -1,0 +1,71 @@
+{% extends "pattern.html" %}
+{% block title %}
+list of showtimes
+{% endblock %}
+{% block toolbar_title %}
+<h3>list of showtimes</h3>
+{% endblock %}
+{% block toolbar_body %}
+    {{ block.super }}
+{% endblock %}
+{% block main_content %}
+    <div class="row">
+    <div class="col py-3">
+        {% if showtimes %}
+            <div class="row px-2">
+                <form action="" method="get" class="row">
+                    {% include '_filter.html' with filed=searchfrom.movie_name %}
+                    {% include '_filter.html' with filed=searchfrom.price_level %}
+                    {% include '_filter.html' with filed=searchfrom.cinema_filter %}
+                    {% include '_filter.html' with filed=searchfrom.movie_length_min%}
+                    {% include '_filter.html' with filed=searchfrom.movie_length_max %}
+                    {% include '_filter.html' with filed=searchfrom.sale_is_open %}
+                    <button class="btn btn-secondary mx-5" type="submit">search</button>
+                </form>
+                </div>
+            <div class="row px-2 ">
+            {% for showtime in  showtimes %}
+                <div class="col-3 px-2 py-3">
+                <a href="{% url "showtime_details" showtime_id=showtime.id %}" class="btn  w-75 h-100
+                {% if showtime.status != showtime.SALE_OPEN %}
+                    disabled btn-outline-secondary
+                {% else %}
+                     btn-outline-dark
+                {% endif %}">
+                <span>{{ showtime.movie }}</span>
+                <br>
+                <span>{{ showtime.cinema }}</span>
+                <br>
+                <span>{{ showtime.start_time | date:"l n/j H:i" }}</span>
+                <br>
+                <span class="badge
+                {% if showtime.status == showtime.SALE_NOT_STARTED %}
+                bg-warning
+                {% elif showtime.status == showtime.SHOW_CANCELED %}
+                bg-danger
+                {% elif showtime.status == showtime.SALE_OPEN %}
+                bg-success
+                {% else %}
+                bg-secondary
+                {% endif %}">
+                {% if showtime.status == showtime.SALE_OPEN %}
+                  price:{{ showtime.price }}
+                {% else %}
+                    {{ showtime.get_status_display }}
+                {% endif %}
+                </span>
+                 {% if  showtime.free_seats < 10 and showtime.status == showtime.SALE_OPEN%}
+                        <span class="badge bg-danger">
+                        free seats:{{ showtime.free_seats }}
+                        </span>
+                    {% endif %}
+                </a>
+                </div>
+            {% endfor %}
+            </div>
+            {% else %}
+            <div class="alert alert-danger">NOT FIND SHOW TIME</div>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}

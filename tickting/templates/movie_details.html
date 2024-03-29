@@ -1,0 +1,63 @@
+{% extends "pattern.html" %}
+{% block title %}
+details of movies
+{% endblock %}
+{% block toolbar_title %}
+<button class="btn btn-dark mx-3"><a class="text-light h4" href={% url "movie_list" %}>films</a></button>
+{% endblock %}
+{% block toolbar_body %}
+    <h5>
+{{ movie.name }}
+    </h5>
+{% endblock %}
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8 p-5">
+            <div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>director:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ movie.director }}</h6>
+    </div>
+    </div>
+</div>
+<div class="container">
+     <div class="row">
+    <div class="col-6">
+        <h5>year:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ movie.year }}</h6>
+    </div>
+     </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>length:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ movie.length }}</h6>
+    </div>
+        </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>description:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ movie.description}}</h6>
+    </div>
+         </div>
+</div>
+        </div>
+        <div class="col-4">
+            <img class="img-fluid p-5" src="{{ movie.poster.url }}" alt="{{ movie.name }}">
+        </div>
+    </div>
+</div>
+{% endblock %}

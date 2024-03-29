@@ -1,0 +1,81 @@
+{% extends 'pattern.html' %}
+{% block title %}showtime details{% endblock %}
+{% block toolbar_title %}<h3 >{{ showtime.movie.name }}</h3>{% endblock %}
+{% block main_content %}
+    <div class="row ">
+    <div class="col-8">
+        <div class="row bg-secondary my-1">
+            <div class="col-4">
+                <h5 class="mx-2">film name:</h5>
+            </div>
+            <div class="col-8">
+                {{ showtime.movie.name }}
+            </div>
+        </div>
+         <div class="row bg-secondary my-1">
+            <div class="col-4">
+                <h5 class="mx-2">cinema name:</h5>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-8">
+                        {{ showtime.cinema.name }}
+                    </div>
+                    <div class="col-4 my-2 badge bg-info">
+                        {{ showtime.free_seats }} seats
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bg-secondary my-1">
+            <div class="col-4">
+                <h5 class="mx-2">start time:</h5>
+            </div>
+            <div class="col-8">
+              {{ showtime.start_time | date:"l n/j H:i" }}
+            </div>
+        </div>
+        <div class="row bg-secondary my-1">
+            <div class="col-4">
+                <h5 class="mx-2">address:</h5>
+            </div>
+            <div class="col-8">
+                {{ showtime.cinema.address }}
+            </div>
+        </div>
+        <div class="row bg-secondary my-1">
+            <div class="col-4">
+                <h5 class="mx-2">price:</h5>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-8">
+                        {{ showtime.price }}
+                    </div>
+                    <div class="col-4 my-2 badge bg-info">
+                        <form action="" method="post" class="form-inline">
+                            {% csrf_token %}
+                            <select name="seat_count" class="form-control form-control form-control-sm ml-2">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <button type="submit" class="btn btn-xs btn-success my-1" href="#">
+                                buying ticket
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+            <img class="img-fluid my-2 w-25" src="{{ showtime.movie.poster.url }}" alt="{{ movie.name }}">
+        <span class="alert alert-danger align-items-center small">
+            {{ error }}
+        </span>
+        </div>
+    </div>
+{% endblock %}

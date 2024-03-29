@@ -1,0 +1,33 @@
+*{
+    max-width: 100%;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+    height: 200px;
+    background-color: cadetblue;
+}
+.footer{
+    display: flex;
+    justify-content: center;
+    padding: 80px;
+    height: 200px;
+    background-color: cadetblue;
+}
+.bd1{
+    background-color: darkgray;
+}
+.icon{
+    padding-left: 5px;
+    color: #7f2222;
+}
+.li1{
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+}
+a{
+    all: unset;
+    color: black;
+}

@@ -1,0 +1,67 @@
+{% extends "pattern.html" %}
+{% block title %}
+details of cinemas
+{% endblock %}
+{% block toolbar_title %}
+<button class="btn btn-dark mx-3"><a class="text-light h4" href={% url "cinema-list" %}>cinemas</a></button>
+{% endblock %}
+{% block toolbar_body %}
+    <h5>
+{{ cinema.name }}
+    </h5>
+{% endblock %}
+{% block main_content %}
+<div class="container">
+    <div class="row">
+        <div class="col-8 p-5">
+            <div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>capacity:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ cinema.capacity }}</h6>
+    </div>
+    </div>
+</div>
+<div class="container">
+     <div class="row">
+    <div class="col-6">
+        <h5>city:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ cinema.city }}</h6>
+    </div>
+     </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>address:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ cinema.address }}</h6>
+    </div>
+        </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-6">
+        <h5>phone:</h5>
+    </div>
+    <div class="col-6">
+        <h6>{{ cinema.phone}}</h6>
+    </div>
+         </div>
+</div>
+        </div>
+        <div class="col-4">
+            {% if cinema.poster %}
+                <img class="img-fluid p-5" src="{{ cinema.poster.url }}" alt="{{ cinema.name }}">
+            {% else %}
+                <p></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

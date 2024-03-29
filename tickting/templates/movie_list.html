@@ -1,0 +1,35 @@
+{% extends "pattern.html" %}
+{% block title %}
+list of movies
+{% endblock %}
+{% block toolbar_title %}
+<h3>list of films</h3>
+{% endblock %}
+{% block toolbar_body %}
+    {{ block.super }}
+{% endblock %}
+{% block main_content %}
+<div class="row">
+         <div class="col">
+        {% if movies_list %}
+     <ul class="item-list">
+     {% for movie in movies_list %}
+     <a class="text-dark" href="{% url "movie_details" movie_id=movie.id %}">
+     <li class="li1 btn btn-info my-2">
+         {{ movie }}
+         <small class="text-muted">
+             ({{ movie.director }})
+         </small>
+     </li>
+     </a>
+     {% endfor %}
+     </ul>
+            {% include "_fileimport.html" with company="intal" color="success" %}
+    {% else  %}
+     <div class="alert alert-danger">
+     not find
+     </div>
+     {% endif %}
+      </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'pattern.html' %}
+{% block title %}payment list{% endblock %}
+{% block toolbar_title %}payments{% endblock %}
+{% block main_content %}
+    <div class="container">
+    <button class="btn btn-success"><a href="{% url "payment_creat" %}">deposit+</a></button>
+        {% if payments  %}
+            {% for payment in payments %}
+                <div class="row my-1 bg-secondary">
+                <div class="col-2">
+            <h6>amount:</h6>
+        </div>
+        <div class="col-2">
+            {{ payment.amount }}
+        </div>
+                     <div class="col-2">
+            <h6>transaction time:</h6>
+        </div>
+       <div class="col-2">
+       {{ payment.transaction_time }}
+       </div>
+                          <div class="col-2">
+            <h6>transaction id:</h6>
+        </div>
+        <div class="col-2">
+            {{ payment.transaction_id }}
+        </div>
+                </div>
+
+            {% endfor %}
+        {% endif %}
+
+
+</div>
+
+{% endblock %}
+

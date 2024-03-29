@@ -1,0 +1,54 @@
+{% extends 'pattern.html' %}
+{% block title %}ticket details{% endblock %}
+{% block toolbar_title %}<h3 >ticket details</h3>
+<button class="btn btn-dark"><a href="{% url "ticket_list" %}">your tickets</a></button>
+{% endblock %}
+{% block main_content %}
+    <div class="row ">
+    <div class="col-8">
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">order time:</h5>
+            </div>
+            <div class="col-8">
+                {{ ticket.order_time | date:"l n/j H:i" }}
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">user:</h5>
+            </div>
+            <div class="col-8">
+                {{ ticket.customer.user.get_full_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">movie:</h5>
+            </div>
+            <div class="col-8">
+               {{ ticket.showtime.movie.name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">cinema:</h5>
+            </div>
+            <div class="col-8">
+                {{ ticket.showtime.cinema.name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <h5 class="mx-2">start time:</h5>
+            </div>
+            <div class="col-8">
+                {{ ticket.showtime.start_time | date:"l n/j H:i" }}
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        {% include "_fileimport.html" with company="come sooner" color="success"  %}
+    </div>
+    </div>
+{% endblock %}

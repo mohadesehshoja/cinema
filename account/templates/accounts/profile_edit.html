@@ -1,0 +1,64 @@
+{% extends 'pattern.html' %}
+{% block title %}profile edit{% endblock %}
+{% block toolbar_title %}profile edit{% endblock %}
+{% block main_content %}
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-8">
+            <div class="row my-2">
+                <div class="col-2 my-1">
+                    <h6>user name:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ user.username }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>gender:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ profile_form.gender }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>first name:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ user_edit.first_name }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>last name:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ user_edit.last_name }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>email:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ user_edit.email }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>phone number:</h6>
+                </div>
+                <div class="col-4 my-1">
+                    {{ profile_form.mobile }}
+                </div>
+                <div class="col-2 my-1">
+                    <h6>address:</h6>
+                </div>
+                <div class="col-10 my-1">
+                    <p>{{ profile_form.address }}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-4">
+            {% if user.profile.profileimage  %}
+                <img  src="{{ user.profile.profileimage.url }}" class="img-fluid w-50 my-3" alt="{{ user.username }}">
+            {% endif %}
+        {{ profile_form.profileimage }}
+        </div>
+    </div>
+    <button class="btn btn-success">submit</button>
+    </form>
+{% endblock %}
